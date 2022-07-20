@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <input type="text" />
+    <div class="msg"></div>
+    <script>
+      const $input = document.querySelector('input');
+      const $msg = document.querySelector('.msg');
+
+      const debounce = (callback, delay) => {
+        let timeId;
+        return (event) => {
+          if (timeId) clearTimeout(timeId);
+          timeId = setTimeout(callback, delay, event);
+        };
+      };
+      $input.oninput = debounce((e) => {
+        $msg.textContent = e.target.value;
+        console.log($msg.textContent);
+      }, 300);
+    </script>
+  </body>
+</html>
